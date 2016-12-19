@@ -1,10 +1,10 @@
+package main;
+
 import javax.persistence.*;
-import java.util.List;
 
-public class Main {
+public class GravaCompra {
 
-    public static void main(String args[]) {
-
+    public void grava(){
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("point");
 
         EntityManager manager = factory.createEntityManager();
@@ -14,7 +14,7 @@ public class Main {
         manager.getTransaction().begin();
 
         for(int i = 0; i < 100; i++) {
-            manager.persist(new Point());
+            manager.persist(new main.Point());
         }
 
         manager.getTransaction().commit();
@@ -25,10 +25,10 @@ public class Main {
 
         /*
         BUSCA E MOSTRA
-        Point[] area = new Point[20];
+        main.Point[] area = new main.Point[20];
 
         for(int i = 0; i < area.length; i++){
-            area[i] = manager.find(Point.class, (long)i+202L);
+            area[i] = manager.find(main.Point.class, (long)i+202L);
         }
 
         for(int i = 0; i < area.length; i++){
@@ -40,16 +40,15 @@ public class Main {
         //BUSCA COM PARAMÊTROS
 
         Query query = manager.createQuery(
-                "SELECT p FROM Point AS p WHERE p.x > :paramX");
+                "SELECT p FROM main.Point AS p WHERE p.x > :paramX");
         query.setParameter("paramX", 30);
 
-        List<Point> resultados = query.getResultList();
+        List<main.Point> resultados = query.getResultList();
 
-        for(Point p:resultados){
+        for(main.Point p:resultados){
             System.out.printf("X: %d, Y: %d\n",p.getX(), p.getY());
         }
         */
-
     }
 
 }
