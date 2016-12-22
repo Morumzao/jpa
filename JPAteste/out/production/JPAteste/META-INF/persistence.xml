@@ -4,13 +4,15 @@
      http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="point">
+    <persistence-unit name="compra">
 
         <!-- provedor/implementacao do JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- entidade mapeada -->
         <class>main.Compra</class>
+        <class>main.Pizza</class>
+        <class>main.Sabor</class>
 
         <properties>
             <!-- dados da conexao -->
@@ -29,7 +31,7 @@
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
 
-            <!--  atualiza o banco, gera as tabelas se for preciso -->
+            <!--  atualiza o banco e gera as tabelas se for preciso -->
             <property name="hibernate.hbm2ddl.auto" value="update" />
 
         </properties>

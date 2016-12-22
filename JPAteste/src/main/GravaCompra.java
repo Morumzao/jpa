@@ -1,27 +1,51 @@
 package main;
 
 import javax.persistence.*;
+import java.util.List;
 
-public class GravaCompra {
+public final class GravaCompra {
 
-    public void grava(){
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("point");
+    private GravaCompra(){}
 
-        EntityManager manager = factory.createEntityManager();
+    private static EntityManagerFactory factory;
 
-        /*
-        INSERE
+    private static EntityManager manager;
+
+    private static void init(){
+        factory = Persistence.createEntityManagerFactory("compra");
+        manager = factory.createEntityManager();
+    }
+
+    public static void gravarCompra(Compra compra){
+
+        init();
+
         manager.getTransaction().begin();
 
-        for(int i = 0; i < 100; i++) {
-            manager.persist(new main.Point());
+        manager.persist(compra);
+
+        Object[] pizzas = compra.getPizzas().toArray();
+
+        for(int i = 0; i < pizzas.length; i++){
+            ((Pizza) pizzas[i]).setCompraId(compra.getId());
+            manager.persist(pizzas[i]);
         }
 
         manager.getTransaction().commit();
 
         manager.close();
 
-        */
+    }
+
+    public static List<Compra> getCompras(){
+
+        init();
+
+        Query query = manager.createQuery("SELECT c FROM Compra AS c");
+
+        return (List<Compra>) query.getResultList();
+
+    }
 
         /*
         BUSCA E MOSTRA
@@ -49,6 +73,5 @@ public class GravaCompra {
             System.out.printf("X: %d, Y: %d\n",p.getX(), p.getY());
         }
         */
-    }
 
 }

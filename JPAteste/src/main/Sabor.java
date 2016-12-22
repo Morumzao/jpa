@@ -1,9 +1,20 @@
 package main;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Sabor {
+
+    @Id
+    @GeneratedValue
+    private long id;
 
     private double preco;
     private String nome;
+
+    public Sabor(){}
 
     public Sabor(String nome, double preco){
         this.preco = preco;

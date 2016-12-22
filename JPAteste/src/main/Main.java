@@ -34,9 +34,9 @@ public class Main {
     static Sabor[] sabores = {
             new Sabor("Muzzarela",1.75),new Sabor("Calabresa",2.25),
             new Sabor("Peperonni",3.25),new Sabor("Cebola",2),
-            new Sabor("Ovo",2),new Sabor("Pimentão",2),
+            new Sabor("Ovo",2),new Sabor("Pimentï¿½o",2),
             new Sabor("Tomate",2),new Sabor("Presunto",2),
-            new Sabor("Rúcula",1.75),new Sabor("Mangericão",1.5),
+            new Sabor("Rï¿½cula",1.75),new Sabor("Mangericï¿½o",1.5),
             new Sabor("Picanha",2),new Sabor("Azeitona",1)};
 
     static Compra compra = new Compra();
@@ -51,15 +51,20 @@ public class Main {
 
             clearConsole();
             System.out.println(logo);
-            System.out.println("Seja bem-vindo à melhor pizzaria da cidade!\nComo podemos Ajuda-lo?");
+            System.out.println("Seja bem-vindo ï¿½ melhor pizzaria da cidade!\nComo podemos Ajuda-lo?");
             mostraCarrinho(compra);
             System.out.print(compra.getPizzas().size() > 0 ? "0 - Enviar Pedido\n" : "");
             mostraArray(main_menu);
-            System.out.print("\nDigite a opção desejada: ");
+            System.out.print("\nDigite a opï¿½ï¿½o desejada: ");
 
             opt = validaOpcao(compra.getPizzas().size() > 0 ? 0 : 1, main_menu.length);
 
             switch (opt) {
+                case 0:
+                    clearConsole();
+                    GravaCompra.gravarCompra(compra);
+                    System.out.println("Compra finalizada com sucesso!");
+                    break;
                 case 1:
                     clearConsole();
                     fim = novoPedido();
@@ -67,6 +72,15 @@ public class Main {
                 case 2:
                     clearConsole();
                     fim = verPedidos();
+                    break;
+                case 3:
+                    clearConsole();
+                    System.out.println("Compras anteriores: ");
+                    Object[] compras = GravaCompra.getCompras().toArray();
+                    for(int i = 0; i < compras.length; i++){
+                        mostraArray(((Compra) compras[i]).getPizzas().toArray());
+                        System.out.println("aaaaaaaaaaaaaaaaaaaaaaa");
+                    }
                     break;
                 default:
                     System.out.println("Volte sempre! A melhor pizzaria da cidade agradece!");
@@ -112,7 +126,7 @@ public class Main {
                     clearConsole();
                     System.out.println(logo);
                     mostraPizza(pizza);
-                    System.out.println("Sabores disponíveis: ");
+                    System.out.println("Sabores disponï¿½veis: ");
                     System.out.println("0 - Cancelar");
                     mostraArray(sabores);
                     System.out.print("Digite um sabor para ser adicionado na pizza: ");
@@ -208,8 +222,8 @@ public class Main {
             opt = scanner.nextInt();
 
             if (opt < min || opt > max) {
-                System.out.println("Opção inválida, tente novamente.");
-                System.out.print("\nDigite a opção desejada: ");
+                System.out.println("Opï¿½ï¿½o invï¿½lida, tente novamente.");
+                System.out.print("\nDigite a opï¿½ï¿½o desejada: ");
             }
 
         } while (opt < min || opt > max);

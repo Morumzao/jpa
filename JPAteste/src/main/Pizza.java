@@ -1,12 +1,26 @@
 package main;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Pizza {
 
+    @Id
+    @GeneratedValue
+    private long id;
+
+    private long compraId;
+
+    @Transient
     private List<Sabor> sabores = new ArrayList<Sabor>();
+
     private double preco = 12;
+
     private String nome;
 
     public void addSabor(Sabor sabor){
@@ -48,6 +62,14 @@ public class Pizza {
         this.nome = nome;
     }
 
+    public long getCompraId(){
+        return compraId;
+    }
+
+    public void setCompraId(long compraId){
+        this.compraId = compraId;
+    }
+
     @Override
     public String toString(){
         return String.format("%s - %.2f",nome,preco);
@@ -68,7 +90,7 @@ public class Pizza {
             }
             ct++;
         }
-        nome = "main.Pizza";
+        nome = "Pizza";
         for(int i = 0; i < nomes.length; i++){
             if(i%2 > 0) {
                 nome += i == 0 ? nomes[i].substring(0, 1).toUpperCase() + nomes[i].substring(1).toLowerCase() : nomes[i].toLowerCase();

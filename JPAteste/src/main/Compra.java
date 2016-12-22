@@ -1,11 +1,19 @@
 package main;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Compra {
 
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Transient
     private List<Pizza> pizzas = new ArrayList<Pizza>();
+
     private double preco = 0;
 
     public void addPizza(Pizza pizza){
@@ -33,6 +41,10 @@ public class Compra {
 
     public void setPreco(double preco){
         this.preco = preco;
+    }
+
+    public long getId(){
+        return id;
     }
 
 }

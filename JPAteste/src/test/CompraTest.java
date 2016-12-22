@@ -4,12 +4,14 @@ import junit.framework.TestCase;
 import main.Compra;
 import main.Pizza;
 import main.Sabor;
+import org.junit.Test;
 
 /**
  * Created by Basis Tecnologia on 19/12/2016.
  */
 public class CompraTest extends TestCase {
 
+    @Test
     public void testAddPizza(){
 
         Compra compra = new Compra();
